@@ -1,0 +1,438 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Javascript QuickStart</title>
+    <meta name="description" content="Javascript QuickStart">
+    <meta name="author" content="Kain">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/default.css" id="theme">
+    <style>
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'League Gothic', Impact, sans-serif 'Microsoft YaHei' !important;
+        }
+
+        body, div, p, span, small, b, i {
+            font-family: sans-serif 'Microsoft YaHei' !important;
+        }
+    </style>
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+    <script>
+        document.write('<link rel="stylesheet" href="css/print/' + (window.location.search.match(/print-pdf/gi) ? 'pdf' : 'paper') + '.css" type="text/css" media="print">');
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <div class="reveal">
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+
+            <section>
+                <section>
+                    <h1>Javascript QuickStart</h1>
+                    <h3 style="font-size:36px;">javascript 快速入门</h3>
+                    <p>
+                        <small><a href="https://github.com/kainhong">Kain</a></small>
+                    </p>
+                </section>
+
+                <section>
+                    <h2>about me</h2>
+                    <div style="position:absolute;left:50px;top:100px;">
+                        <img src="img/IMG_5349.jpg" style="width:220px;">
+                    </div>
+                    <div style="position:absolute;left:450px;top:155px;font-size: 24px;text-align:left;">
+                        <h4 style="font-size:36px;">Kain</h4>
+                        <div style="color:#000;">
+                            <p>全栈开发工程师</p>
+                            <p>真名：洪亮</p>
+                            <p>邮箱：hong.l@yougou.com </p>
+                            <p>https://github.com/kainhong</p>
+                        </div>
+                        <p>&nbsp;</p>
+                        <div style="color:#000;">
+                            <p>做过10年.net开发</p>
+                            <p>擅长复杂后端应用开发。技术宅</p>
+                        </div>
+                    </div>
+                </section>
+            </section>
+            <section>
+                <section>
+                    <h2> 三驾马车</h2>
+                </section>
+                <section>
+                    <h2>HTML</h2>
+                </section>
+                <section>
+                    <h2>CSS</h2>
+                </section>
+                <section>
+                    <h2>Javascript</h2>
+                </section>
+            </section>
+            <section>
+                <section>
+                    <h3>引入javascript</h3>
+                </section>
+                <section>
+                    <p>尽可能晚的引入脚本文件</p>
+                </section>
+                <section>
+                    <p>避免内嵌脚本</p>
+                </section>
+            </section>
+            <section>
+                <section>
+                    <h3>变量</h3>
+                </section>
+                <section>
+                    <p>最小全局变量</p>
+                </section>
+                <section>
+                    <h3>全局变量的问题</h3>
+                    <p>当程序的两个不同部分定义同名但不同作用的全局变量的时候，命名冲突在所难免</p>
+                </section>
+                <section>
+                    <pre><code>
+                        function sum(x, y) {
+                            // 不推荐写法: 隐式全局变量 
+                            result = x + y;
+                            return result;
+                        }
+                    </code></pre>
+                </section>
+                <section>
+                    <pre><code>
+                        function sum(x, y) {
+                            var result = x + y;
+                            return result;
+                        }
+                    </code></pre>
+                </section>
+                <section>
+                    <pre><code>
+                    // 反例，勿使用
+                    function foo() {
+                        var a = b = 0;
+                    // ...
+                    }</code></pre>
+                </section>
+            </section>
+            <section>
+                <section>
+                    <h3>避免(Avoiding) eval()</h3>
+                </section>
+                <section>
+                    <pre><code>
+                        //反面示例<br />
+                        var property = "name";<br />
+                        alert(eval("obj." + property));<br /><br />
+
+                        //更好的<br />
+                        var property = "name";<br />
+                        alert(obj[property]);<br />
+                    </code></pre>
+                </section>
+            </section>
+            <section>
+                <section>
+                    <h3>for循环(for Loops)</h3>
+                </section>
+                <section>
+                    <h3>缓存数组长度</h3>
+                    <pre><span style="color: #008000;">//</span><span style="color: #008000;"> 次佳的循环</span><span style="color: #008000;"><br /></span><span style="color: #0000ff;">for</span> (<span style="color: #0000ff;">var</span> i = 0; i &lt; myarray.length; i++) {<br />   <span style="color: #008000;">//</span><span style="color: #008000;"> 使用myarray[i]做点什么</span><span style="color: #008000;"><br /></span>}</pre>
+                </section>
+                <section>
+                    <pre><span style="color: #0000ff;">function</span> looper() {<br />   <span style="color: #0000ff;">var</span> i = 0,<br />        max,<br />        myarray = [];<br />   <span style="color: #008000;">//</span><span style="color: #008000;"> ...</span><span style="color: #008000;"><br /></span>   <span style="color: #0000ff;">for</span> (i = 0, max = myarray.length; i &lt; max; i++) {<br />      <span style="color: #008000;">//</span><span style="color: #008000;"> 使用myarray[i]做点什么</span><span style="color: #008000;"><br /></span>   }<br />}</pre>
+                </section>
+            </section>
+            <section>
+                <section>
+                    <h3>（不）扩展内置原型((Not) Augmenting Built-in Prototypes)</h3>
+                </section>
+            </section>
+
+
+            <section>
+                <section>
+                    <h3>
+                        缩进(Indentation)
+                    </h3>
+                </section>
+                <section>
+                    <p>良好的格式方便你我他</p>
+                    <p>
+                        <pre><span style="color: #0000ff;">function</span> outer(a, b) {<br />    <span style="color: #0000ff;">var</span> c = 1,<br />        d = 2,<br />        inner;<br />    <span style="color: #0000ff;">if</span> (a &gt; b) {<br />        inner = <span style="color: #0000ff;">function</span> () {<br />            <span style="color: #0000ff;">return</span> {<br />                r: c - d<br />            };<br />        };<br />    } <span style="color: #0000ff;">else</span> {<br />        inner = <span style="color: #0000ff;">function</span> () {<br />            <span style="color: #0000ff;">return</span> {<br />                r: c + d<br />            };<br />        };<br />    }<br />    <span style="color: #0000ff;">return</span> inner;<br />}</pre>
+                    </p>
+                </section>
+
+            </section>
+            <section>
+                <section>
+                    <h3>花括号{}(Curly Braces)</h3>
+                </section>
+                <section>
+                    <pre><span style="color: #008000;">//</span><span style="color: #008000;"> 糟糕的实例</span><span style="color: #008000;"><br /></span><span style="color: #0000ff;">for</span> (<span style="color: #0000ff;">var</span> i = 0; i &lt; 10; i += 1)<br />   alert(i);</pre>
+                </section>
+                <section>
+                    <pre><span style="color: #008000;">//</span><span style="color: #008000;"> 糟糕的实例</span><span style="color: #008000;"><br /></span><span style="color: #0000ff;">for</span> (<span style="color: #0000ff;">var</span> i = 0; i &lt; 10; i += 1)<br />   alert(i);<br />   alert(i + " is " + (i % 2 ? "odd" : "even"));</pre>
+                </section>
+                <section>
+                    <pre><span style="color: #008000;">//</span><span style="color: #008000;"> 好的实例</span><span style="color: #008000;"><br /></span><span style="color: #0000ff;">for</span> (<span style="color: #0000ff;">var</span> i = 0; i &lt; 10; i += 1) {<br />   alert(i);<br />}</pre>
+
+                </section>
+                <section>
+                    <h3>左花括号的位置(Opening Brace Location)</h3>
+                </section>
+                <section>
+                    <p>在同一行或者换行</p>
+                    <pre><span style="color: #0000ff;">if</span> (<span style="color: #0000ff;">true</span>) {<br />   alert("It's TRUE!");<br />}<br /><br /><span style="color: #008000;">//</span><span style="color: #008000;">或</span><span style="color: #008000;"><br /></span><br /><span style="color: #0000ff;">if</span> (<span style="color: #0000ff;">true</span>)<br />{<br />   alert("It's TRUE!");<br />}</pre>
+                    <p>我们要求同一行</p>
+                </section>
+            </section>
+            <section>
+                <section>
+                    <h3>分号</h3>
+                </section>
+                <section>
+                    <pre>
+                    <pre><code>
+                            var myMethod = function() {
+                              return 42;
+                            }    
+                            (function() {
+                              // 一个匿名函数，在这里会被错误解析当作参数调用导致报错
+                            })();
+                        </code></pre>
+                    </pre>
+                </section>
+            </section>
+            <section>
+                <section><h3>空格(White Space)</h3></section>
+                <section>
+                    <p>空格的使用同样有助于改善代码的可读性和一致性。在写英文句子的时候，在逗号和句号后面会使用间隔。</p>
+                </section>
+            </section>
+            <section>
+                <section><h3>命名规范(Naming Conventions)</h3></section>
+                <section>和java规范一致</section>
+            </section>
+            <section>
+                <section><h3>注释(Writing Comments)</h3></section>
+                <section>
+                    <h3>
+                        类
+                    </h3>
+                    <pre><code>
+                        /**
+                        这是一个UELib类
+                        @class UELib
+                        @constructor
+                        @author kain
+                        @modified someone
+                        @date 2014-03-01
+                        **/
+                    </code></pre>
+                </section>
+                <section>
+                    <h3>函数</h3>
+                    <pre><code>
+                        /**
+                        My method description.  Like other pieces of your comment blocks,
+                        this can span multiple lines.
+                        @method css
+                        @param prop {String} set/get a css property
+                        @param [value] {String} A value you want to set to a css property
+                        @example
+                        ele.css('width', '100%');
+                        @return {Boolean} Returns true on success
+                        **/
+                        UELib.prototype.css = function(prop,value){
+                        };
+                    </code></pre>
+                </section>
+            </section>
+            <section>
+                <section>
+                    <h3>重要的概念</h3>
+                    <img src="img/bz.jpg" />
+                </section>
+                <section>
+                    <h3>原型链</h3>
+                </section>
+                <section>
+                    <h3>闭包</h3>
+                </section>
+                <section>
+                    <h3>Function</h3>
+                </section>
+                <section>
+                    <div style="position:absolute;left:50px;top:100px;">
+                        <img src="img/bz3.png" />
+                    </div>
+                    <div style="position:absolute;left:350px;top:150px;font-size: 24px;text-align:left;">
+                        <h3>Don't mind</h3>
+                        <h3>别在意这些细节</h3>
+                    </div>
+                </section>
+            </section>
+            <section>
+                <h2>Debug</h2>
+            </section>
+            <section>
+                <section><h3>工具</h3></section>
+                <section>
+                    <ul>
+                        <li class="fragment">Visual Studio</li>
+                        <li class="fragment">IE Toos(IE8+)</li>
+                        <li class="fragment">FireDebug(Plugin)</li>
+                        <li class="fragment">Chrome</li>
+                        <li class="fragment">WebStorm</li>
+                    </ul>
+                </section>
+            </section>
+            <section>
+                <section>
+                    <h3>Chrome</h3><div>
+                        <img src="img/chrome.png" />
+                    </div>
+                </section>
+            </section>
+            <section>
+                <section>
+                    <h3>Sources Explorer</h3>
+                    <div>
+                        <img src="img/chrome.png" />
+                    </div>
+                </section>
+                <section>
+                    <h3>Source</h3>
+                    <div>
+                        <img src="img/chrome.png" />
+                    </div>
+                </section>
+                <section>
+                    <h3>Break point, Run, Pause</h3>
+                    <div>
+                        <img src="img/chrome.png" />
+                    </div>
+                </section>
+                <section>
+                    <h3>Watch Expressions, Call Stack</h3>
+                    <div>
+                        <img src="img/chrome.png" />
+                    </div>
+                </section>
+            </section>
+            <section>
+                <section>
+                    <h3>Console</h3>
+                </section>
+                <section>
+                    <p >
+                        <ol>
+                            <li>Console.log</li>
+                            <li>Console.trace</li>
+                            <li>Console.clear</li>
+                            <li>Console.assert</li>
+                            <li>debugger</li>
+                        </ol>
+                    </p>
+                </section>
+            </section>
+            <section>
+                <section><h3>基础库</h3></section>
+                <section>
+                    <ol>s
+                        <li>jquery</li>
+                        <li>requirejs</li>
+                        <li>seajs</li>
+                        <li>q</li>
+                    </ol>
+                </section>
+            </section>
+            <section>
+                <section><h3>UI库</h3></section>
+                <section>
+                    <ol>
+                        <li>jquery ui</li>
+                        <li>easyUI</li>
+                        <li>bootstrap</li>
+                    </ol>
+                </section>
+            </section>
+            <section>
+                <section><h3>前端框架</h3></section>
+                <section>
+                    <ol>
+                        <li><b>Angularjs</b></li>
+                        <li>Extjs</li>
+                        <li>BackoneJs</li>
+                        <li>Knockoutjs</li>
+                        <li>Ember.js</li>
+                    </ol>
+                </section>
+            </section>
+            <section>
+                <section>
+                    <h2>Javascript不仅仅是前端</h2>
+                    <p>
+                        <img src="img/nodejs.jpg" />
+                    </p>
+                </section>
+            </section>
+            <section>
+                <section>
+                    <h1>Q&A</h1>
+                </section>
+            </section>
+            <section>
+                <h1>thanks</h1>
+            </section>
+            <section>
+                <p><span style="color: white; background: #ff5e99; text-shadow: none;">Follow me:</span> http://weibo.com/kainhong</p>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+    <script>
+
+        // Full list of configuration options available here:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+
+            theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+            transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+            // Optional libraries used to extend on reveal.js
+            dependencies: [
+                { src: 'lib/js/classList.js', condition: function () { return !document.body.classList; } },
+                { src: 'plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } },
+                { src: 'plugin/zoom-js/zoom.js', async: true, condition: function () { return !!document.body.classList; } },
+                { src: 'plugin/notes/notes.js', async: true, condition: function () { return !!document.body.classList; } }
+                // { src: 'plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
+                // { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+            ]
+        });
+
+    </script>
+</body>
+</html>
