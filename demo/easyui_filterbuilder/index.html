@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="http://www.jeasyui.com/easyui/themes/default/easyui.css" rel="stylesheet" />
+    <link href="http://www.jeasyui.com/easyui/themes/icon.css" rel="stylesheet" />
+    <script src="http://www.jeasyui.com/easyui/jquery-1.8.0.min.js"></script>
+    <script src="http://www.jeasyui.com/easyui/jquery.easyui.min.js"></script>
+    <script src="js/menu.js"></script>
+    <script src="js/expression.node.js"></script>
+    <script src="js/filterbuilder.js"></script>
+  
+    <title></title>
+</head>
+<body>
+    <div id="dy" class="expression-groups">
+        
+    </div> 
+    <div>
+        <button onclick="getData();">Get</button>
+    </div>
+    <script> 
+        var fields = [{
+            "name":"productName",
+            "text": "Product Name", 
+        },{
+            "name": "createDate",
+            "text": "Create Date",  
+        },
+        {
+            "name": "price",
+            "text": "Price",
+        }];
+        var groups = [
+            {
+                type: 'And',
+                id: '1',
+                nodes: [
+                    { field: { name: "productName", text: "Product Name" }, op: "equals", value: '' }
+                ]
+            },
+            {
+                type: 'And',
+                id: '1',
+                nodes: [
+                    { field: { name: "price", text: "Price" }, op: "lessthan", value: 100 }
+                ]
+            },
+        ]
+        $(function () { 
+            $("#dy").expression({
+                fields: fields,
+                groups:groups
+            })
+        });
+
+
+        function getData() {
+            var groups = $("#dy").expression('getData');
+            console.log(groups);
+        }
+    </script>
+</body>
+</html>
